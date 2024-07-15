@@ -27,47 +27,47 @@ def get_execution_feedback(accept, pass_tests, errors, run_times, memory):
     return feedback
             
 
-def build_coder_prompts(row, args, engine=None, train=None):
-    raw_prompt = engine.get_prompt(row['input'], args.few_shot_examples, train, instruct=(args.instruct_version == 'instruct'), mode='coder') 
-    prompt = engine.wrap_prompt_chat_template(raw_prompt) if args.instruct_version == 'instruct' else raw_prompt
+def build_coder_prompts(row, engine=None, train=None, few_shot=0, instruct_version='instruct'):
+    raw_prompt = engine.get_prompt(row['input'], few_shot, train, instruct=(instruct_version == 'instruct'), mode='coder') 
+    prompt = engine.wrap_prompt_chat_template(raw_prompt) if instruct_version == 'instruct' else raw_prompt
     row['prompt'] = prompt
     return row
 
-def build_feedback_prompts(row, args, try_col_name, engine=None, train=None):
+def build_feedback_prompts(row, try_col_name, engine=None, train=None, few_shot=0, instruct_version='instruct'):
     best_sample_id = -1 
-    raw_prompt = engine.get_prompt(row[try_col_name][best_sample_id], args.few_shot_examples, train, instruct=True, mode='feedback') 
+    raw_prompt = engine.get_prompt(row[try_col_name][best_sample_id], few_shot, train, instruct=True, mode='feedback') 
     prompt = engine.wrap_prompt_chat_template(raw_prompt)
     row['feedback_prompt'] = prompt 
     return row
 
-def build_refine_prompts(row, args, prev_try_col_name, feedback_col_name, engine=None, train=None):
+def build_refine_prompts(row, prev_try_col_name, feedback_col_name, engine=None, train=None, few_shot=0, instruct_version='instruct'):
     best_sample_id = -1 
-    raw_prompt = engine.build_refine_prompt(row[prev_try_col_name][best_sample_id], row[feedback_col_name][best_sample_id], args.few_shot_examples, train, instruct=True) 
+    raw_prompt = engine.build_refine_prompt(row[prev_try_col_name][best_sample_id], row[feedback_col_name][best_sample_id], few_shot, train, instruct=True) 
     prompt = engine.wrap_prompt_chat_template(raw_prompt)
     row['refine_prompt'] = prompt 
     return row
 
-def build_reflect_prompts(row, args, prev_try_col_name, exec_col_name, engine=None, train=None):
+def build_reflect_prompts(row, prev_try_col_name, exec_col_name, engine=None, train=None, few_shot=0, instruct_version='instruct'):
     best_sample_id = -1 
-    raw_prompt = engine.build_reflect_prompt(row[prev_try_col_name][best_sample_id], row[exec_col_name][best_sample_id], args.few_shot_examples, train, instruct=True) 
+    raw_prompt = engine.build_reflect_prompt(row[prev_try_col_name][best_sample_id], row[exec_col_name][best_sample_id], few_shot, train, instruct=True) 
     prompt = engine.wrap_prompt_chat_template(raw_prompt)
     row['reflect_prompt'] = prompt 
     return row
     
-def build_nl2code_prompt(row, args, engine=None, train=None):
-    raw_prompt = engine.get_prompt(row['problem_description'], args.few_shot_examples, train, instruct=(args.instruct_version == 'instruct'), mode='nl2code') # TODO argument for instruct
+def build_nl2code_prompt(row, engine=None, train=None, few_shot=0, instruct_version='instruct'):
+    raw_prompt = engine.get_prompt(row['problem_description'], few_shot, train, instruct=(instruct_version == 'instruct'), mode='nl2code') # TODO argument for instruct
     prompt = engine.wrap_prompt_chat_template(raw_prompt)
     row['prompt'] = prompt
     return row
 
-def build_nl2code_feedback_prompt(row, args, try_col_name, engine=None, train=None):
+def build_nl2code_feedback_prompt(row, try_col_name, engine=None, train=None, few_shot=0, instruct_version='instruct'):
     best_sample_id = -1 
     raw_prompt = engine.get_prompt(row[try_col_name][best_sample_id],  mode='nl2code_feedback') 
     prompt = engine.wrap_prompt_chat_template(raw_prompt)
     row['feedback_prompt'] = prompt 
     return row
 
-def build_nl2code_refine_prompts(row, args, prev_try_col_name, feedback_col_name, engine=None, train=None):
+def build_nl2code_refine_prompts(row, prev_try_col_name, feedback_col_name, engine=None, train=None, few_shot=0, instruct_version='instruct'):
     best_sample_id = -1 
     raw_prompt = engine.build_nl2code_refine_prompt(row[prev_try_col_name][best_sample_id], row[feedback_col_name][best_sample_id]) 
     prompt = engine.wrap_prompt_chat_template(raw_prompt)
