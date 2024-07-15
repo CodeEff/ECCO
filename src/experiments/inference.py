@@ -333,9 +333,8 @@ elif args.eval_mode == 'reflexion':
     print('Written to', path)
 
 elif args.eval_mode == 'nl2code':
-    test_problem_ids = list(test['problem_id'].unique())
-    problem_description = problem_description[problem_description['problem_id'].isin(test_problem_ids)]
     problem_description = problem_description.apply(build_nl2code_prompt, axis=1, engine=engine, train=train) # Added prompts to test
+
     prompts = list(problem_description['prompt'])
     print('Generating for', len(prompts), prompts)
     raw_generations = engine.generate(prompts, args.temperature, args.max_new_tokens, args.num_samples) # prompts, num_samples
@@ -362,9 +361,8 @@ elif args.eval_mode == 'nl2code':
 
 elif args.eval_mode == 'nl2code-refine':
     # ====== Step 1. Generate Faster Codes (First Try) ============= 
-    test_problem_ids = list(test['problem_id'].unique())
-    problem_description = problem_description[problem_description['problem_id'].isin(test_problem_ids)]
     problem_description = problem_description.apply(build_nl2code_prompt, axis=1, engine=engine, train=train)
+
     prompts = list(problem_description['prompt'])
     raw_generations = engine.generate(prompts, args.temperature, args.max_new_tokens, n_samples=1)
     generated_text = engine.extract_text_output(raw_generations)
@@ -400,9 +398,8 @@ elif args.eval_mode == 'nl2code-refine':
 
 elif args.eval_mode == 'nl2code-exec-refine':
     # ====== Step 1. Generate Faster Codes (First Try) ============= 
-    test_problem_ids = list(test['problem_id'].unique())
-    problem_description = problem_description[problem_description['problem_id'].isin(test_problem_ids)]
     problem_description = problem_description.apply(build_nl2code_prompt, axis=1, engine=engine, train=train)
+
     prompts = list(problem_description['prompt'])
     raw_generations = engine.generate(prompts, args.temperature, args.max_new_tokens, n_samples=1)
     generated_text = engine.extract_text_output(raw_generations)
@@ -469,9 +466,8 @@ elif args.eval_mode == 'nl2code-exec-refine':
 
 elif args.eval_mode == 'nl2code-reflexion':
     # ====== Step 1. Generate Faster Codes (First Try) ============= 
-    test_problem_ids = list(test['problem_id'].unique())
-    problem_description = problem_description[problem_description['problem_id'].isin(test_problem_ids)]
     problem_description = problem_description.apply(build_nl2code_prompt, axis=1, engine=engine, train=train)
+    
     prompts = list(problem_description['prompt'])
     raw_generations = engine.generate(prompts, args.temperature, args.max_new_tokens, n_samples=1)
     generated_text = engine.extract_text_output(raw_generations)
