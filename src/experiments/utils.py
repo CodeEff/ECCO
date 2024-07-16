@@ -54,13 +54,13 @@ def build_reflect_prompts(row, prev_try_col_name, exec_col_name, engine=None, tr
     row['reflect_prompt'] = prompt 
     return row
     
-def build_nl2code_prompt(row, engine=None, train=None, few_shot=0, instruct_version='instruct'):
-    raw_prompt = engine.get_prompt(row['problem_description'], few_shot, train, instruct=(instruct_version == 'instruct'), mode='nl2code') # TODO argument for instruct
+def build_nl2code_prompts(row, engine=None, train=None, few_shot=0, instruct_version='instruct'):
+    raw_prompt = engine.get_prompt(row['problem_description'], few_shot, train, instruct=(instruct_version == 'instruct'), mode='nl2code') 
     prompt = engine.wrap_prompt_chat_template(raw_prompt)
     row['prompt'] = prompt
     return row
 
-def build_nl2code_feedback_prompt(row, try_col_name, engine=None, train=None, few_shot=0, instruct_version='instruct'):
+def build_nl2code_feedback_prompts(row, try_col_name, engine=None, train=None, few_shot=0, instruct_version='instruct'):
     best_sample_id = -1 
     raw_prompt = engine.get_prompt(row[try_col_name][best_sample_id],  mode='nl2code_feedback') 
     prompt = engine.wrap_prompt_chat_template(raw_prompt)
