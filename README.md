@@ -9,16 +9,16 @@ It consists of 2 subsets `edit` and `generate` each with 3 splits (`train`, `val
 
 ### Loading the dataset 
 ```python
-    dataset = load_dataset('EfficientCode/ECCO', 'edit') # For history-based editing setting
-    dataset = load_dataset('EfficientCode/ECCO', 'generate') # For nl-instructed generation setting
+dataset = load_dataset('EfficientCode/ECCO', 'edit') # For history-based editing setting
+dataset = load_dataset('EfficientCode/ECCO', 'generate') # For nl-instructed generation setting
 ```
 
 ## Experiments
 
 ### Environment setup
 ```bash 
-    conda env create -f environment.yml
-    conda activate ecco
+conda env create -f environment.yml
+conda activate ecco
 ```
 
 ### Code structure 
@@ -32,4 +32,4 @@ The `src/` folder consists of the primary codebase:
    - `prompt_formats.py` and `utils.py` cotains utilities for prompt building and execution feedback formatting
 
 ### Setting up the Judge0 evaluation setup 
-AMI and instructions coming soon!
+Amazon Machine Image (AMI) and instructions coming soon!
