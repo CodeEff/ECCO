@@ -26,7 +26,7 @@ def get_execution_feedback(accept, pass_tests, errors, run_times, memory):
 
     return feedback
             
-
+# =============== Prompt builders =================
 def build_coder_prompts(row, engine=None, train=None, few_shot=0, instruct_version='instruct'):
     raw_prompt = engine.get_prompt(row['input'], few_shot, train, instruct=(instruct_version == 'instruct'), mode='coder') 
     prompt = engine.wrap_prompt_chat_template(raw_prompt) if instruct_version == 'instruct' else raw_prompt
@@ -73,6 +73,3 @@ def build_nl2code_refine_prompts(row, prev_try_col_name, feedback_col_name, engi
     prompt = engine.wrap_prompt_chat_template(raw_prompt)
     row['refine_prompt'] = prompt 
     return row
-
-
-    
