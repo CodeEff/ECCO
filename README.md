@@ -2,6 +2,11 @@
 
 This repository contains the source code for the paper "ECCO: Can We Improve Model-Generated Code Efficiency Without Sacrificing Functional Correctness?"
 
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/7414638d-2aa2-4597-97c9-6711c7dff64a" alt="ECCO Image">
+</div>
+
 ## Dataset
 The dataset is available on Huggingface at: [EfficientCode/ECCO](https://huggingface.co/datasets/EfficientCode/ECCO).
 
@@ -33,3 +38,7 @@ The `src/` folder consists of the primary codebase:
 
 ### Setting up the Judge0 evaluation setup 
 Amazon Machine Image (AMI) and instructions coming soon!
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/930ee4f3-c120-4ad6-b4df-35c3e2c3fbca" alt="Judge0 Setup Image">
+  </div>
