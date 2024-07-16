@@ -58,7 +58,8 @@ class BaseModel(object):
             prompt_example_rows['prompt'] = prompt_example_rows.apply(
                 lambda row: prompt_details['few_shot_format'].format(
                     row['problem_description'], 
-                    self._wrap_in_context_output(row['fastest_code']) # wrap in the format to extract later
+                    # TODO: This will be available with the nl2code dataset having the fastest code column. Till then it will fail
+                    self._wrap_in_context_output(row['fastest_code']) 
                 ),
                 axis=1
             ) 
