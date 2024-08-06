@@ -3,6 +3,7 @@ import json
 import os
 import argparse
 from tqdm import tqdm
+from datasets import load_dataset
 
 from utils import *
 
@@ -10,7 +11,6 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--test_cases_path', default='<TEST_CASES_PATH>')
 parser.add_argument('--judge_url', default='http://<YOUR_URL>:PORT')
 parser.add_argument('--input_path', default=None)
-parser.add_argument('--traj_path', default=None)
 parser.add_argument('--out_path', default='./judge_eval/generate/')
 parser.add_argument('--nrows', default=None, type=int)
 parser.add_argument('--code_col_name', default='generated_codes')
@@ -172,5 +172,6 @@ def calculate_percentile(generated_json_data, submission_details):
 
 if __name__ == '__main__':
     gen_code_data = pd.read_json(args.input_path, nrows=args.nrows, orient='records', lines=True)
-    traj_data = pd.read_json(args.traj_path, orient='records', lines=True)
-    calculate_percentile(gen_code_data, traj_data)
+    submission_dataset = load_dataset('CodeEff/ECCO', 'generate_eval', split='test')
+    submission_data = submission_dataset.to_pandas()
+    calculate_percentile(gen_code_data, submission_data)

@@ -12,7 +12,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--test_cases_path', default='<TEST_CASES_PATH>')
 parser.add_argument('--judge_url', default='http://<YOUR_URL>:PORT')
 parser.add_argument('--input_path', default=None)
-parser.add_argument('--fast_col_name', default='target')
+parser.add_argument('--code_col_name', default='generated_codes')
 parser.add_argument('--num_runs', default=3)
 parser.add_argument('--num_tests', default=None, type=int)
 parser.add_argument('--out_path', default='./judge_eval/edit/')
@@ -26,7 +26,7 @@ def calculate_speedup(json_data,file_name):
 
     for index,row in tqdm(json_data.iterrows(), total=len(json_data)):
         slow_code = row['input']
-        fast_codes = row[args.fast_col_name] # Can be a list of generated samples
+        fast_codes = row[args.code_col_name] # Can be a list of generated samples
         problem_id = row['problem_id']
 
         if type(fast_codes) == str: # If not a list 
@@ -169,7 +169,7 @@ def calculate_speedup(json_data,file_name):
     if not os.path.exists(args.out_path):
         os.makedirs(args.out_path)
 
-    file_path = os.path.join(args.out_path, args.fast_col_name + '_' + args.input_path.split("/")[-1])
+    file_path = os.path.join(args.out_path, args.code_col_name + '_' + args.input_path.split("/")[-1])
     with open(file_path, 'w') as json_file:
         print('Saving evaluation results to', file_path)
         json.dump(speedup_data_values, json_file, indent=2)
