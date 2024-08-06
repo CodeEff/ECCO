@@ -2,15 +2,9 @@ name: ecco
 channels:
   - defaults
 dependencies:
-  - _libgcc_mutex=0.1
-  - _openmp_mutex=5.1
   - bzip2=1.0.8
   - ca-certificates=2023.08.22
-  - ld_impl_linux-64=2.38
   - libffi=3.4.4
-  - libgcc-ng=11.2.0
-  - libgomp=11.2.0
-  - libstdcxx-ng=11.2.0
   - libuuid=1.41.5
   - ncurses=6.4
   - openssl=3.0.12
@@ -123,7 +117,7 @@ dependencies:
       - pandas==2.1.2
       - parso==0.8.3
       - pathspec==0.11.2
-      - peft==0.3.0.dev0
+      - peft==0.3.0
       - pexpect==4.9.0
       - pillow==10.3.0
       - platformdirs==4.0.0
@@ -185,7 +179,7 @@ dependencies:
       - urllib3==2.1.0
       - uvicorn==0.27.0
       - uvloop==0.19.0
-      - vllm==0.4.0
+      - vllm==0.4.0.post1
       - wandb==0.16.6
       - watchfiles==0.21.0
       - wcwidth==0.2.13
