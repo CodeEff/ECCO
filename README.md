@@ -45,7 +45,7 @@ python experiments/inference.py --model deepseek \
    --temperature 0.4 --num_samples 1 --eval_mode "edit" 
 ```
 
-Model choices are in [the registry](./experiments/inference.py) (`model_classes` dictionary's keys)
+Model choices are in [the registry](https://github.com/CodeEff/ECCO/blob/80df5bb9c3145b8d673732fa13c50d9259e5d079/experiments/inference.py#L23)
 
 `--eval_mode` choices are `['edit', 'nl2code', 'self-refine', 'exec-refine','nl2code-self-refine', 'nl-exec-refine', 'nl2code-exec-refine', 'nl2code-nl-exec-refine']` for the different experiments. Modes without the prefix `nl2code` correspond to the *history-based editing* setting and with the prefix refer to the *NL-instructed generation* paradigm.
 
