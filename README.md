@@ -42,7 +42,7 @@ Setup the evaluation setup with the guide in the [evaluation README](./evaluatio
 We run experiments to generate code from the `experiments/inference.py` entrypoint. An example is provided below:
 ```sh
 python experiments/inference.py --model deepseek \
---temperature 0.4 --num_samples 1 --eval_mode "edit" 
+   --temperature 0.4 --num_samples 1 --eval_mode "edit" 
 ```
 
 Model choices are in [the registry](./experiments/inference.py) (`model_classes` dictionary's keys)
