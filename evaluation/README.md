@@ -1,6 +1,7 @@
 # Evaluation 
 
 ## Starting up the Judge0 evaluation setup 
+![Judge Setup](https://github.com/user-attachments/assets/b3875151-336d-446f-961f-352e0d34ed6a)
 We make our evaluation setup available as an Amazon Machine Image (AMI) which can be used to setup your own EC2 instance in AWS for reproducibility.
 
 1. Select Region `us-east-2` (Ohio) on [AWS Console](https://console.aws.amazon.com/) 
