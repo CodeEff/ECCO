@@ -10,7 +10,7 @@ import json
 from transformers import AutoTokenizer
 from fastchat.conversation import get_conv_template
 
-from src.experiments.prompt_formats import (
+from experiments.prompt_formats import (
     CODER_INSTRUCTION, CODER_PROMPT_FORMAT, CODER_FEW_SHOT_FORMAT,
     FEEDBACK_INSTRUCTION, FEEDBACK_PROMPT_FORMAT, FEEDBACK_FEW_SHOT_FORMAT,
     REFLECT_INSTRUCTION, REFLECT_PROMPT_FORMAT, REFLECT_FEW_SHOT_FORMAT,

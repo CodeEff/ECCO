@@ -7,8 +7,8 @@ from typing import *
 import argparse
 import datetime
 
-from src.evaluation.utils import judge_submit
-from src.experiments.utils import (
+from evaluation.utils import judge_submit
+from experiments.utils import (
     get_execution_feedback,
     build_coder_prompts,
     build_feedback_prompts,
@@ -18,7 +18,7 @@ from src.experiments.utils import (
     build_nl2code_feedback_prompts,
     build_nl2code_refine_prompts,
 )
-from src.experiments.model_classes import * 
+from experiments.model_classes import * 
 
 model_classes = {
     'codellama_7b' : CodeLLaMa,
@@ -59,7 +59,7 @@ parser.add_argument('--test_cases_path', default='./data/codenet/public_test_cas
 parser.add_argument('--nrows', default=None,type=int)
 parser.add_argument('--num_gpus',type=int, default=1)
 parser.add_argument('--finetuned_weights',type=str, default=None)
-parser.add_argument('--eval_mode',type=str, choices=['optim', 'nl2code', 'self-refine', 'exec-refine','nl2code-self-refine', 'nl-exec-refine', 'nl2code-exec-refine', 'nl2code-nl-exec-refine'], default='optim') 
+parser.add_argument('--eval_mode',type=str, choices=['edit', 'nl2code', 'self-refine', 'exec-refine','nl2code-self-refine', 'nl-exec-refine', 'nl2code-exec-refine', 'nl2code-nl-exec-refine'], default='edit') 
 args = parser.parse_args()
 
 if 'nl2code' not in args.eval_mode: # Editing setting
@@ -100,7 +100,7 @@ if args.finetuned_weights:
 engine = model_class(**model_kwarg) # Instantiate model
 llm = engine.get_model()
 
-if args.eval_mode in ['optim', 'nl2code']: # Non refinement settings
+if args.eval_mode in ['edit', 'nl2code']: # Non refinement settings
     test = test.apply(coder_prompt_builder, axis=1, engine=engine, train=train, few_shot=args.few_shot_examples, instruct_version=args.instruct_version) # Added prompts to test
 
     prompts = list(test['prompt'])
