@@ -17,7 +17,7 @@ dataset = load_dataset('CodeEff/ECCO', 'generate') # For nl-instructed generatio
 
 ### Download the test cases 
 ```sh
-mkdir data & cd data
+mkdir data && cd data
 wget https://huggingface.co/datasets/CodeEff/ECCO/resolve/main/test_cases.zip
 unzip test_cases.zip
 ```
@@ -57,7 +57,7 @@ Model choices are in [the registry](https://github.com/CodeEff/ECCO/blob/80df5bb
 `--eval_mode` choices are `['edit', 'nl2code', 'self-refine', 'exec-refine','nl2code-self-refine', 'nl-exec-refine', 'nl2code-exec-refine', 'nl2code-nl-exec-refine']` for the different experiments. Modes without the prefix `nl2code` correspond to the *history-based editing* setting and with the prefix refer to the *NL-instructed generation* paradigm.
 
 ## Citation 
-```
+```bib
 @article{waghjale2024ecco,
   title={ECCO: Can We Improve Model-Generated Code Efficiency Without Sacrificing Functional Correctness?},
   author={Waghjale, Siddhant and Veerendranath, Vishruth and Wang, Zora Zhiruo and Fried, Daniel},
