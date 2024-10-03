@@ -9,7 +9,7 @@ from tqdm import tqdm
 from utils import judge_submit
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--test_cases_path', default='<TEST_CASES_PATH>')
+parser.add_argument('--test_cases_path', default='./data/codenet/generated_test_cases')
 parser.add_argument('--judge_url', default='http://<YOUR_URL>:PORT')
 parser.add_argument('--input_path', default=None)
 parser.add_argument('--code_col_name', default='generated_codes')

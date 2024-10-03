@@ -15,6 +15,13 @@ dataset = load_dataset('CodeEff/ECCO', 'edit') # For history-based editing setti
 dataset = load_dataset('CodeEff/ECCO', 'generate') # For nl-instructed generation setting
 ```
 
+### Download the test cases 
+```sh
+mkdir data & cd data
+wget https://huggingface.co/datasets/CodeEff/ECCO/resolve/main/test_cases.zip
+unzip test_cases.zip
+```
+
 ## Experiments
 
 ### Environment setup
